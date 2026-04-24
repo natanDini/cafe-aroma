@@ -5,6 +5,7 @@ import lombok.Builder;
 @Builder
 public record CategoriaDTO (
 
+        Long id,
         String nome,
         String descricao,
         String imagem

@@ -7,7 +7,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,11 +24,5 @@ public class CategoriaController {
     @GetMapping
     public ResponseEntity<List<CategoriaDTO>> getCategorias() throws Exception {
         return ResponseEntity.ok(categoriaService.getCategorias());
-    }
-
-    @Operation(summary = "Buscar categoria por ID", description = "Recupera os detalhes específicos de uma categoria através do seu identificador único.")
-    @GetMapping("/{id}")
-    public ResponseEntity<CategoriaDTO> getCategoriaById(@PathVariable Long id) throws Exception {
-        return ResponseEntity.ok(categoriaService.getCategoriaById(id));
     }
 }

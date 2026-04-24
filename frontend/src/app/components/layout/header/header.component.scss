@@ -1,0 +1,46 @@
+.cafe-font {
+  font-family: 'Playfair Display', Georgia, serif;
+  letter-spacing: 1px;
+}
+
+ion-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.4rem;
+  letter-spacing: 2px;
+  font-weight: 400;
+}
+
+ion-button {
+  --color: var(--cafe-wood);
+  font-family: 'Playfair Display', Georgia, serif;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+}
+
+.sidebar-content {
+  --background: var(--cafe-beige);
+
+  ion-list {
+    background: transparent;
+    padding-top: 16px;
+  }
+
+  ion-item {
+    --background: transparent;
+    --color: var(--cafe-wood);
+    --border-color: rgba(166, 107, 55, 0.2);
+    font-family: 'Playfair Display', Georgia, serif;
+    letter-spacing: 1px;
+    font-size: 1rem;
+    --padding-top: 12px;
+    --padding-bottom: 12px;
+
+    ion-icon {
+      color: var(--cafe-gold);
+    }
+  }
+}
+
+ion-toolbar ion-buttons[slot="end"] {
+  padding-right: 25px;
+}

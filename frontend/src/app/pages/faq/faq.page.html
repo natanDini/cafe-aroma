@@ -1,0 +1,34 @@
+<app-header></app-header>
+
+<ion-content [fullscreen]="true">
+
+  <div class="faq-hero">
+    <h1 class="faq-titulo">Perguntas Frequentes</h1>
+    <div class="divider-gold"></div>
+    <p class="faq-subtitulo">Encontre respostas para as dúvidas mais comuns</p>
+  </div>
+
+  <div class="faq-wrapper">
+    <div class="faq-lista" *ngIf="faqs$ | async as faqs">
+
+      <div class="faq-item" *ngFor="let faq of faqs">
+
+        <div class="faq-pergunta" (click)="toggle(faq.id)" [class.aberta]="isAberta(faq.id)">
+          <span class="pergunta-texto">{{ faq.pergunta }}</span>
+          <ion-icon [name]="isAberta(faq.id) ? 'chevron-up-outline' : 'chevron-down-outline'" class="faq-chevron"
+            [class.aberta]="isAberta(faq.id)">
+          </ion-icon>
+        </div>
+
+        <div class="faq-resposta" [class.visivel]="isAberta(faq.id)">
+          <p class="resposta-texto">{{ faq.resposta }}</p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+
+</ion-content>

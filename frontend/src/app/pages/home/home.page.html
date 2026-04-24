@@ -1,0 +1,31 @@
+<app-header></app-header>
+
+<ion-content [fullscreen]="true">
+
+  <div class="hero-container" *ngIf="banner$ | async as banner">
+    <div class="hero-overlay">
+      <img [src]="banner.logo" class="logo-hero" alt="Logo">
+      <h1 class="old-money-title">{{ banner.titulo }}</h1>
+      <p class="old-money-subtitle">{{ banner.subtitulo }}</p>
+      <ion-button fill="outline" class="btn-cardapio" routerLink="/produtos">Ver Cardápio</ion-button>
+    </div>
+  </div>
+
+  <ion-grid class="ion-padding section-sobre" *ngIf="sobre$ | async as sobre">
+    <ion-row class="ion-align-items-center">
+      <ion-col size="12" size-md="6">
+        <img [src]="sobre.imagem" class="img-sobre" alt="Sobre nós">
+      </ion-col>
+      <ion-col size="12" size-md="6" class="ion-padding">
+        <h2 class="section-title">Nossa História</h2>
+        <div class="divider-gold"></div>
+        <p class="text-justify">{{ sobre.historia }}</p>
+        <h3 class="section-subtitle">Nossos Valores</h3>
+        <p class="text-justify">{{ sobre.valores }}</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <app-footer></app-footer>
+
+</ion-content>

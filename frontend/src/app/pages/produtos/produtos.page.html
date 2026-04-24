@@ -1,0 +1,58 @@
+<app-header></app-header>
+
+<ion-content [fullscreen]="true">
+
+  <div class="produtos-hero">
+    <h1 class="produtos-titulo">Nosso Cardápio</h1>
+    <div class="divider-gold"></div>
+    <p class="produtos-subtitulo">Escolha sua categoria e descubra nossos produtos artesanais</p>
+  </div>
+
+  <div class="categorias-container" *ngIf="categorias$ | async as categorias">
+
+    <div class="categoria-item" *ngFor="let categoria of categorias">
+
+      <!-- Cabeçalho da categoria (clicável) -->
+      <div class="categoria-header" (click)="toggleCategoria(categoria)">
+        <div class="categoria-header-left">
+          <img [src]="categoria.imagem" class="categoria-thumb" [alt]="categoria.nome">
+          <div class="categoria-info">
+            <h2 class="categoria-nome">{{ categoria.nome }}</h2>
+            <p class="categoria-descricao">{{ categoria.descricao }}</p>
+          </div>
+        </div>
+        <div class="categoria-header-right">
+          <span class="categoria-label">Produtos</span>
+          <ion-icon [name]="isAberta(categoria.id) ? 'chevron-up-outline' : 'chevron-down-outline'"
+            class="categoria-chevron" [class.aberta]="isAberta(categoria.id)">
+          </ion-icon>
+        </div>
+      </div>
+
+      <!-- Produtos da categoria (accordion) -->
+      <div class="produtos-grid" [class.visivel]="isAberta(categoria.id)">
+
+        <div class="loading-produtos" *ngIf="loadingCategoria[categoria.id]">
+          <ion-spinner name="crescent" style="--color: var(--cafe-gold)"></ion-spinner>
+        </div>
+
+        <ng-container *ngIf="!loadingCategoria[categoria.id] && produtosPorCategoria[categoria.id]">
+          <div class="produto-card" *ngFor="let produto of produtosPorCategoria[categoria.id]">
+            <img [src]="produto.imagem" class="produto-img" [alt]="produto.nome">
+            <div class="produto-info">
+              <h3 class="produto-nome">{{ produto.nome }}</h3>
+              <p class="produto-descricao">{{ produto.descricao }}</p>
+              <span class="produto-preco">{{ produto.preco }}</span>
+            </div>
+          </div>
+        </ng-container>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <app-footer></app-footer>
+
+</ion-content>

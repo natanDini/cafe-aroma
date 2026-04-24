@@ -1,0 +1,102 @@
+<app-header></app-header>
+
+<ion-content [fullscreen]="true">
+
+  <div class="admin-hero">
+    <h1 class="admin-titulo">Painel Admin</h1>
+    <div class="divider-gold"></div>
+    <p class="admin-subtitulo">Gerencie contatos e perguntas frequentes</p>
+  </div>
+
+  <div class="admin-wrapper">
+
+    <section class="admin-secao">
+      <div class="secao-header">
+        <ion-icon name="mail-outline" class="secao-icone"></ion-icon>
+        <h2 class="secao-titulo">Contatos Recebidos</h2>
+      </div>
+
+      <div class="contatos-lista" *ngIf="contatos$ | async as contatos">
+
+        <div class="empty-state" *ngIf="contatos.length === 0">
+          <p>Nenhum contato recebido ainda.</p>
+        </div>
+
+        <div class="contato-card" *ngFor="let contato of contatos">
+          <div class="contato-header">
+            <div class="contato-remetente">
+              <span class="contato-nome">
+                <ion-icon name="person-outline"></ion-icon>
+                {{ contato.nome }}
+              </span>
+              <span class="contato-email">
+                <ion-icon name="mail-outline"></ion-icon>
+                {{ contato.email }}
+              </span>
+            </div>
+            <span class="contato-data">
+              <ion-icon name="time-outline"></ion-icon>
+              {{ formatarData(contato.dataEnvio) }}
+            </span>
+          </div>
+          <div class="contato-mensagem">
+            <ion-icon name="chatbubble-outline" class="msg-icone"></ion-icon>
+            <p>{{ contato.mensagem }}</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="separador"></div>
+
+    <section class="admin-secao">
+      <div class="secao-header">
+        <ion-icon name="help-circle-outline" class="secao-icone"></ion-icon>
+        <h2 class="secao-titulo">Registrar Nova FAQ</h2>
+      </div>
+
+      <div class="sucesso-inline" *ngIf="enviado">
+        <ion-icon name="checkmark-circle-outline"></ion-icon>
+        <span>FAQ registrada com sucesso!</span>
+      </div>
+
+      <form class="faq-form" [formGroup]="faqForm" (ngSubmit)="salvarFaq()">
+
+        <div class="campo-grupo">
+          <label class="campo-label">Pergunta</label>
+          <input class="campo-input" type="text" formControlName="pergunta" placeholder="Digite a pergunta..."
+            [class.invalido]="pergunta.invalid && pergunta.touched">
+          <span class="campo-erro" *ngIf="pergunta.invalid && pergunta.touched">
+            Pergunta deve ter pelo menos 5 caracteres
+          </span>
+        </div>
+
+        <div class="campo-grupo">
+          <label class="campo-label">Resposta</label>
+          <textarea class="campo-input campo-textarea" formControlName="resposta" placeholder="Digite a resposta..."
+            rows="4" [class.invalido]="resposta.invalid && resposta.touched">
+          </textarea>
+          <span class="campo-erro" *ngIf="resposta.invalid && resposta.touched">
+            Resposta deve ter pelo menos 5 caracteres
+          </span>
+        </div>
+
+        <div class="campo-erro-geral" *ngIf="erro">
+          Erro ao salvar. Tente novamente.
+        </div>
+
+        <button class="btn-salvar" type="submit" [disabled]="enviando">
+          <ion-spinner name="crescent" *ngIf="enviando"
+            style="--color: var(--cafe-beige); width: 18px; height: 18px;"></ion-spinner>
+          <span *ngIf="!enviando">Salvar FAQ</span>
+        </button>
+
+      </form>
+    </section>
+
+  </div>
+
+  <app-footer></app-footer>
+
+</ion-content>

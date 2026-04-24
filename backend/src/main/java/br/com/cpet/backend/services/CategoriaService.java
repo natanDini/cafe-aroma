@@ -27,6 +27,7 @@ public class CategoriaService {
             String base64Image = ImagemUtil.converterImagemParaBase64(categoria.getImagem());
 
             categoriasDTO.add(CategoriaDTO.builder()
+                            .id(categoria.getId())
                             .nome(categoria.getNome())
                             .descricao(categoria.getDescricao())
                             .imagem(base64Image)
@@ -34,18 +35,5 @@ public class CategoriaService {
         }
 
         return categoriasDTO;
-    }
-
-    public CategoriaDTO getCategoriaById(Long id) throws Exception {
-
-        Categoria categoria = categoriaRepository.findById(id).orElseThrow(() -> new Exception("Categoria informada não encontrada."));
-
-        String base64Image = ImagemUtil.converterImagemParaBase64(categoria.getImagem());
-
-        return CategoriaDTO.builder()
-                .nome(categoria.getNome())
-                .descricao(categoria.getDescricao())
-                .imagem(base64Image)
-                .build();
     }
 }
