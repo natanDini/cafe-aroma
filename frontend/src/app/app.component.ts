@@ -1,11 +1,34 @@
 import { Component } from '@angular/core';
-import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
+import {
+  IonApp, IonRouterOutlet, IonMenu, IonHeader, IonToolbar,
+  IonTitle, IonButtons, IonButton, IonContent, IonList,
+  IonItem, IonLabel, IonMenuToggle, IonIcon
+} from '@ionic/angular/standalone';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { BackendStatusService } from './services/backend-status';
+import { OfflineScreenComponent } from './components/offline-screen/offline-screen.component';
+import { addIcons } from 'ionicons';
+import {
+  closeOutline, homeOutline, cafeOutline, mailOutline,
+  helpCircleOutline, shieldCheckmarkOutline
+} from 'ionicons/icons';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
-  imports: [IonApp, IonRouterOutlet],
+  imports: [
+    IonApp, IonRouterOutlet, IonMenu, IonHeader, IonToolbar,
+    IonTitle, IonButtons, IonButton, IonContent, IonList,
+    IonItem, IonLabel, IonMenuToggle, IonIcon,
+    CommonModule, RouterModule, OfflineScreenComponent
+  ],
 })
 export class AppComponent {
-  constructor() {}
+  constructor(public statusService: BackendStatusService) {
+    addIcons({
+      closeOutline, homeOutline, cafeOutline, mailOutline,
+      helpCircleOutline, shieldCheckmarkOutline
+    });
+  }
 }

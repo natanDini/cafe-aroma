@@ -1,14 +1,13 @@
-/// <reference types="jasmine" />
-
 import { TestBed } from '@angular/core/testing';
-import { Api } from './api';
 
-describe('Api', () => {
-  let service: Api;
+import { BackendStatus } from './backend-status';
+
+describe('BackendStatus', () => {
+  let service: BackendStatus;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(Api);
+    service = TestBed.inject(BackendStatus);
   });
 
   it('should be created', () => {

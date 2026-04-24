@@ -1,3 +1,51 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <app-offline-screen *ngIf="statusService.offline()"></app-offline-screen>
+
+  <ion-menu contentId="main-content" side="end" menuId="mainMenu">
+    <ion-header>
+      <ion-toolbar style="--background: var(--cafe-wood); --color: var(--cafe-beige);">
+        <ion-title style="font-family: 'Playfair Display', Georgia, serif;">Menu</ion-title>
+        <ion-buttons slot="end">
+          <ion-menu-toggle>
+            <ion-button>
+              <ion-icon name="close-outline" style="color: var(--cafe-gold);"></ion-icon>
+            </ion-button>
+          </ion-menu-toggle>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content style="--background: var(--cafe-beige);">
+      <ion-list lines="none" style="background: transparent; padding-top: 16px;">
+        <ion-menu-toggle auto-hide="false">
+          <ion-item routerLink="/home" routerDirection="root"
+            style="--background: transparent; --color: var(--cafe-wood);">
+            <ion-icon name="home-outline" slot="start" style="color: var(--cafe-gold);"></ion-icon>
+            <ion-label>Home</ion-label>
+          </ion-item>
+          <ion-item routerLink="/produtos" routerDirection="root"
+            style="--background: transparent; --color: var(--cafe-wood);">
+            <ion-icon name="cafe-outline" slot="start" style="color: var(--cafe-gold);"></ion-icon>
+            <ion-label>Produtos</ion-label>
+          </ion-item>
+          <ion-item routerLink="/contato" routerDirection="root"
+            style="--background: transparent; --color: var(--cafe-wood);">
+            <ion-icon name="mail-outline" slot="start" style="color: var(--cafe-gold);"></ion-icon>
+            <ion-label>Contato</ion-label>
+          </ion-item>
+          <ion-item routerLink="/faq" routerDirection="root"
+            style="--background: transparent; --color: var(--cafe-wood);">
+            <ion-icon name="help-circle-outline" slot="start" style="color: var(--cafe-gold);"></ion-icon>
+            <ion-label>FAQ</ion-label>
+          </ion-item>
+          <ion-item routerLink="/admin" routerDirection="root"
+            style="--background: transparent; --color: var(--cafe-wood);">
+            <ion-icon name="shield-checkmark-outline" slot="start" style="color: var(--cafe-gold);"></ion-icon>
+            <ion-label>Admin</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+  <ion-router-outlet id="main-content" *ngIf="!statusService.offline()"></ion-router-outlet>
 </ion-app>
