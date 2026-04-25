@@ -246,6 +246,8 @@ frontend/src/
   <p><strong>Admin</strong></p>
   <img src="assets/imagens/web-admin.jpg" alt="Admin Web" width="1000"/>
 
+  <br/><br/>
+
   <p><strong>Offline</strong></p>
   <img src="assets/imagens/web-offline.jpg" alt="Offline Web" width="1000"/>
 
