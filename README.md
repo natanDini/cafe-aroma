@@ -246,6 +246,9 @@ frontend/src/
   <p><strong>Admin</strong></p>
   <img src="assets/imagens/web-admin.jpg" alt="Admin Web" width="1000"/>
 
+  <p><strong>Offline</strong></p>
+  <img src="assets/imagens/web-offline.jpg" alt="Offline Web" width="1000"/>
+
 </div>
 
 ### Telas — Mobile (Android 16 Baklava)
@@ -260,6 +263,8 @@ frontend/src/
   <img src="assets/imagens/mobile-faq.jpg" alt="FAQ" width="250"/>
   &nbsp;&nbsp;
   <img src="assets/imagens/mobile-admin.jpg" alt="Admin" width="250"/>
+  &nbsp;&nbsp;
+  <img src="assets/imagens/mobile-offline.jpg" alt="Offline" width="250"/>
 </div>
 
 ---
