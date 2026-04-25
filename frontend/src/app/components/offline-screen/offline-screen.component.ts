@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { BackendStatusService } from '../../services/backend-status';
 import { IonicModule } from '@ionic/angular';
+import { timeout } from 'rxjs/operators';
 
 @Component({
   selector: 'app-offline-screen',
@@ -24,19 +25,28 @@ export class OfflineScreenComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    window.addEventListener('online', () => this.tentarReconectar());
+
     this.intervalo = setInterval(() => {
-      this.tentativa++;
-      this.http.get(`${environment.apiUrl}/faq`, { responseType: 'text' }).subscribe({
-        next: () => {
-          this.statusService.setOnline();
-          this.router.navigate(['/home']);
-        },
-        error: () => { }
-      });
+      this.tentarReconectar();
     }, 10000);
+  }
+
+  tentarReconectar() {
+    this.tentativa++;
+    this.http.get(`${environment.apiUrl}/faq`, { responseType: 'text' }).pipe(
+      timeout(8000)
+    ).subscribe({
+      next: () => {
+        this.statusService.setOnline();
+        this.router.navigate(['/home']);
+      },
+      error: () => { }
+    });
   }
 
   ngOnDestroy() {
     clearInterval(this.intervalo);
+    window.removeEventListener('online', () => this.tentarReconectar());
   }
 }

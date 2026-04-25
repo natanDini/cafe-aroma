@@ -26,6 +26,9 @@ import {
 })
 export class AppComponent {
   constructor(public statusService: BackendStatusService) {
+
+    statusService.setOffline();
+    
     addIcons({
       closeOutline, homeOutline, cafeOutline, mailOutline,
       helpCircleOutline, shieldCheckmarkOutline
